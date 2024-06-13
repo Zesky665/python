@@ -5,7 +5,6 @@ from sets_categories_data import (VEGAN,
                                   VEGETARIAN,
                                   KETO,
                                   PALEO,
-                                  OMNIVORE,
                                   ALCOHOLS,
                                   SPECIAL_INGREDIENTS)
 
@@ -36,8 +35,8 @@ def check_drinks(drink_name: str, drink_ingredients: list[str]) -> str:
     """
     if set(drink_ingredients).isdisjoint(ALCOHOLS):
         return f"{drink_name} Mocktail"
-    else:
-        return f"{drink_name} Cocktail"
+    
+    return f"{drink_name} Cocktail"
     
 
 
@@ -55,14 +54,14 @@ def categorize_dish(dish_name: str, dish_ingredients: list[str]) -> str:
     ingredients = set(dish_ingredients)
     if ingredients.issubset(VEGAN):
         return f"{dish_name}: VEGAN"
-    elif ingredients.issubset(VEGETARIAN):
+    if ingredients.issubset(VEGETARIAN):
         return f"{dish_name}: VEGETARIAN"
-    elif ingredients.issubset(PALEO):
+    if ingredients.issubset(PALEO):
         return f"{dish_name}: PALEO"
-    elif ingredients.issubset(KETO):
+    if ingredients.issubset(KETO):
         return f"{dish_name}: KETO"
-    else:
-        return f"{dish_name}: OMNIVORE"
+    
+    return f"{dish_name}: OMNIVORE"
 
 
 def tag_special_ingredients(dish: tuple[str, list[str]]) -> tuple[str, set[str]]:
